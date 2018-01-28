@@ -1,17 +1,22 @@
 const express = require('express');
+const morgan = require('morgan');
+const monogo = require('./util/mongo')
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
+monogo.initDb().catch((err) => { throw err; });
 
 const app = express();
 
+app.use(morgan("dev"));
+
 app.use(express.static("www"));
-app.use("/api", require("./routers/api"));
+app.use("/api", require("./routers/api")(mongo));
 
-console.log(ip + ":" + port);
 
+// port and ip
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+//listen
 app.listen(port, ip);
+console.log("listening on " + ip + ":" + port);
 
 module.exports = app;
