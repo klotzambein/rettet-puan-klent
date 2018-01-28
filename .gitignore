@@ -59,3 +59,4 @@ typings/
 
 access.txt
 package-lock.json
+*.png
