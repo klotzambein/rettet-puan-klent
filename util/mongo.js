@@ -9,8 +9,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
         mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
         mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
         mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-        mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-    mongoUser = process.env[mongoServiceName + '_USER'];
+        mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
+        mongoUser = process.env[mongoServiceName + '_USER'];
 
     if (mongoHost && mongoPort && mongoDatabase) {
         mongoURLLabel = mongoURL = 'mongodb://';
@@ -20,7 +20,6 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
         // Provide UI label that excludes user id and pw
         mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
         mongoURL += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-
     }
 }
 
@@ -49,9 +48,9 @@ const initDb = function () {
 const getDb = function () {
     if (db)
         return db;
-    
+
     initDb().catch(function (err) { throw err; });
-    
+
     return null;
 }
 

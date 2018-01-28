@@ -10,7 +10,8 @@
             "name": "Launch Program",
             "program": "${workspaceFolder}\\index.js",
             "env": {
-                "IP": "localhost"
+                "IP": "localhost",
+                "MONGO_URL": "mongodb://127.0.0.1:27017/test"
             }
         }
     ]
