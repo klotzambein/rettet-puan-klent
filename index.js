@@ -1,8 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
-const monogo = require('./util/mongo')
+const mongo = require('./util/mongo')
 
-monogo.initDb().catch((err) => { throw err; });
+mongo.initDb().catch((err) => { throw err; });
 
 const app = express();
 
