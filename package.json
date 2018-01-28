@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "rettet-puan-klent.de",
   "main": "index.js",
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Warning: no tests\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/klotzambein/rettet-puan-klent.git"
+    "url": "https://github.com/klotzambein/rettet-puan-klent.git"
   },
   "keywords": [
     "puan",

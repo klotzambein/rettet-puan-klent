@@ -10,4 +10,8 @@ const app = express();
 app.use(express.static("www"));
 app.use("/api", require("./routers/api"));
 
+console.log(ip + ":" + port);
+
 app.listen(port, ip);
+
+module.exports = app;
