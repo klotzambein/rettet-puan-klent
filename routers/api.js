@@ -11,7 +11,7 @@ api.post("/", (req, res, next) => {
         .then(() => {
             res.send('{ pageCount: ' + count + '}');
         }).catch((err) => {
-            next(err);
+            res.send(err);
         });
 });
 
