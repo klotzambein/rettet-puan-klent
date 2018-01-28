@@ -58,3 +58,4 @@ typings/
 .env
 
 access.txt
+package-lock.json
