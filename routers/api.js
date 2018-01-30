@@ -25,17 +25,18 @@ api.post("/add", (req, res, next) => {
     var email = req.body.email;
     if (typeof email !== 'string')
         return res.send({ error: "not a string" });
+    email = email.toLowerCase();
     if (!testEmail(email.trim()))
         return res.send({ error: "not a valid email" });
 
-    dbModule.getDb().collection('emails').insertOne({ email: email.trim() })
+    dbModule.getDb().collection('emails').updateOne({ email: email.trim() }, { email: email.trim() }, { upsert: true })
         .catch((err) => {
             res.send({ error: err });
         }).then((result) => {
             res.send({ ok: true });
         });
 });
-api.get("/list", (req, res, next) => {
+/*api.post("/list", (req, res, next) => {
     dbModule.getDb().collection('emails').find({ email: { $exists: true } }).toArray()
         .catch((err) => {
             res.send({ error: err });
@@ -43,7 +44,7 @@ api.get("/list", (req, res, next) => {
         .then((arr) => {
             res.send({ emails: arr });
         });
-});
+});*/
 
 api.use((err, req, res, next) => {
     res.send({ error: err });
