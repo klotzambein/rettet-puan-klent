@@ -11,9 +11,8 @@ app.use(morgan("dev"));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: false }));
 
-app.use(express.static("www"));
 app.use("/api", require("./routers/api")(mongo));
-
+app.get("/", (req, res, next) => { res.redirect("rettet-puan-klent.de"); })
 
 // port and ip
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
