@@ -1,12 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
-const mongo = require('./util/mongo')
+const mongo = require('./util/mongo');
 const parser = require('body-parser');
+const cors = require('cors');
 
 mongo.initDb().catch((err) => { throw err; });
 
 const app = express();
 
+app.use(cors());
 app.use(morgan("dev"));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: false }));
