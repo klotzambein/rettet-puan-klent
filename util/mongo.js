@@ -61,5 +61,6 @@ const test = function () {
 
 exports = module.exports = {
     initDb: initDb,
-    getDb: getDb
+    getDb: getDb,
+    test: test
 };
