@@ -13,7 +13,11 @@ app.use(parser.urlencoded({ extended: false }));
 
 app.use("/api", require("./routers/api")(mongo));
 app.get("/", (req, res, next) => { res.redirect("http://rettet-puan-klent.de/"); });
-app.get("/test", (req, res, next) => { res.send("working"); });
+app.get("/test", (req, res, next) => {
+    mongo.test()
+        .then((v) => res.send("success"))
+        .catch((err) => res.sendStatus(500));
+});
 
 // port and ip
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,

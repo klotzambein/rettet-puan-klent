@@ -54,6 +54,11 @@ const getDb = function () {
     return null;
 }
 
+const test = function () {
+    if (!db) return Promise.resolve(true);
+    return db.collection('emails').count({});
+}
+
 exports = module.exports = {
     initDb: initDb,
     getDb: getDb
